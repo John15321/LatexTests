@@ -46,7 +46,7 @@ jobs:
           for pdf in artifacts/*.pdf; do
             echo "Uploading ${pdf}"
             curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                 -H "Content-Type: application/pdf" \
-                 --data-binary @"${pdf}" \
-                 "${{ steps.create_release.outputs.upload_url }}?name=$(basename "${pdf}")"
+                -H "Content-Type: application/pdf" \
+                --data-binary @"${pdf}" \
+                "${{ steps.create_release.outputs.upload_url }}?name='$(basename "${pdf}'")"
           done
