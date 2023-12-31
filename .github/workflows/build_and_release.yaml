@@ -30,6 +30,11 @@ jobs:
           chmod +x ./gather_artifacts.sh
           ./gather_artifacts.sh
 
+      - name: Install Hub
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y hub
+
       - name: Create Release and Upload Assets
         run: |
           set -x
