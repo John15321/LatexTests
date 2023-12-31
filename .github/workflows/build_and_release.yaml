@@ -16,9 +16,9 @@ jobs:
         uses: xu-cheng/texlive-action@v2
         with:
           scheme: full
-        run: |
-          chmod +x ./build_all.sh
-          ./build_all.sh
+          run: |
+            chmod +x ./build_all.sh
+            ./build_all.sh
 
       - name: Gather Artifacts
         run: |
