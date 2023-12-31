@@ -45,9 +45,9 @@ jobs:
         run: |
           for pdf in artifacts/*.pdf; do
             echo "Uploading ${pdf}"
-            encoded_filename=$(echo "$(basename "${pdf}")" | sed 's/ /%20/g')
-            curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                -H "Content-Type: application/pdf" \
+            curl -v -X POST \
+                -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                -H "Content-Type: application/octet-stream" \
                 --data-binary @"${pdf}" \
-                "${{ steps.create_release.outputs.upload_url }}?name=${encoded_filename}"
+                "${{ steps.create_release.outputs.upload_url }}?name=$(basename "${pdf}" | sed 's/ /%20/g')"
           done
